@@ -1,0 +1,41 @@
+// Getting a typename
+val typeTag = ru.typeTag[A]
+val typeName = typeTag.tpe.typeSymbol.fullName
+
+
+
+
+
+
+// Getting a constructor and its parameters
+val typeTag = ru.typeTag[A]
+val typeObject = typeTag.tpe
+val constructor = typeObject.declaration(ru.nme.CONSTRUCTOR).asMethod
+val parameters = constructor.paramss // List of List of parameters
+
+for (parameter <- parameters) {
+  val name = parameter.name
+  val typeSignature = parameter.typeSignature
+
+  ...
+}
+
+
+
+
+
+// Invoking a constructor
+val mirror = ru.runtimeMirror(Thread.currentThread.getContextClassLoader)
+val classMirror = mirror.reflectClass(typeObject.typeSymbol.asClass)
+val methodMirror = classMirror.reflectConstructor(constructor)
+
+methodMirror.apply(1, 2, 3)
+
+
+
+// Getting an instance of companion object
+val mirror = ru.runtimeMirror(Thread.currentThread.getContextClassLoader)
+val classSymbol = typeObject.typeSymbol.asClass
+val moduleSymbol = classSymbol.companionSymbol.asModule
+
+mirror.reflectModule(moduleSymbol).instance

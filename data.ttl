@@ -1,0 +1,12 @@
+@prefix : <http://example.org/#>.
+
+[
+  a :Person;
+  :name "foo";
+  :age 20;
+  :address [
+    a :Address;
+    :country "Japan";
+    :city "Tokyo"
+  ]
+].

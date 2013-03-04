@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <title>みなさん、Turtleを好きになりましょう</title>
+    <style>
+      pre {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>みなさん、Turtleを好きになりましょう / Love Turtle</h1>
+
+    <h2>Turtleとは / Turtle is ...</h2>
+    <p>TurtleとはJSONのような記法の1つ。W3C勧告候補 <br/> Tutle is a syntax like JSON. W3C Candidate Recommendation</p>
+    <p>Turtle: Terse RDF Triple Language</p>
+    <p>RDFはグラフ構造を表すデータ構造。(元ノード, エッジ, 先ノード)というタプルの集合。 <br/> RDF is a data structure for graph structure.  Set of tuple (source, edge, destination)</p>
+
+    <ul>
+      <li>コンパクト / Compact</li>
+      <li>型を指定できる / Typed (optional)</li>
+      <li>循環構造を表現できる / Cyclic data structures</li>
+    </ul>
+
+    <h2>コンパクト / Compact</h2>
+
+    <h3>Map:</h3>
+
+    <div>JSON:</div>
+    <blockquote>
+      <pre><code>{</code></pre>
+      <pre><code>  "name": "foo",</code></pre>
+      <pre><code>  "age": 20</code></pre>
+      <pre><code>}</code></pre>
+    </blockquote>
+
+    <div>Turtle:</div>
+    <blockquote>
+      <pre><code>[</code></pre>
+      <pre><code>  :name "foo";</code></pre>
+      <pre><code>  :age 20</code></pre>
+      <pre><code>].</code></pre>
+    </blockquote>
+
+    <h3>Array</h3>
+    <div>JSON:</div>
+    <blockquote><pre><code>[1, 2, 3]</code></pre></blockquote>
+
+    <div>Turtle:</div>
+    <blockquote><pre><code>(1, 2, 3)</code></pre></blockquote>
+
+    <h3>Primitives</h3>
+    <div>JSON:</div>
+    <ul>
+      <li>123.456</li>
+      <li>"abc"</li>
+      <li>true, false</li>
+      <li>null</li>
+    </ul>
+
+    <div>Turtle:</div>
+    <ul>
+      <li>123.456</li>
+      <li>"abc"</li>
+      <li>"""multi<br/>line<br/>string"""</li>
+      <li>true, false</li>
+    </ul>
+
+    <h2>型を指定できる / Types (optional)</h2>
+    <div>a Person named "foo", 20 years old:</div>
+    <blockquote>
+      <pre><code>[</code></pre>
+      <pre><code>  a :Person;</code></pre>
+      <pre><code>  :name "Foo";</code></pre>
+      <pre><code>  :age 20</code></pre>
+      <pre><code>]</code></pre>
+    </blockquote>
+
+    <ul>
+      <li>"-5" ^^ xsd:integer</li>
+      <li>"-5" ^^ xsd:double</li>
+      <li>"-5" ^^ your:customType</li>
+    </ul>
+
+    <h2>循環構造を表現できる / Cyclic data structure</h2>
+
+    <div>Scala</div>
+    <blockquote>
+      <pre><code>val ones: Stream[Int] = 1 #:: ones</code></pre>
+      <pre><code>// Stream(1, ...)</code></pre>
+    </blockquote>
+
+    <div>Turtle</div>
+    <blockquote>
+      <pre><code>_:ones rdf:first 1;</code></pre>
+      <pre><code>       rdf:rest _:ones.</code></pre>
+    </blockquote>
+
+
+    <h2>今日作ったもの / What I made today</h2>
+    <p>TurtleとScalaオブジェクトのマッパーのプロトタイプ <br/> Prototype of Turtle to Scala object mapper</p>
+
+    <p>Scala 2.10のリフレクションAPIでコンストラクタの引数名を取得して呼び出し。 <br/> Using Scala 2.10 Reflection API, gets names of the constructor parameters and invokes the constructor.</p>
+
+    <p>設定ファイルや、アプリケーションのデータ保存を想定 <br/> For configuration files or saving application data.</p>
+
+    <p>Parser: Apache Jena</p>
+
+    
+
+  </body>
+</html>
